@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Relojes Digitales Horizontales</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .relojes {
+      display: flex;
+      gap: 40px;
+    }
+
+    .reloj-container {
+      text-align: center;
+      border: 3px solid #00ff00;
+      padding: 20px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    .ciudad {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .hora {
+      font-size: 48px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="relojes">
+    <div class="reloj-container">
+      <div class="ciudad">Valencia, España</div>
+      <div class="hora" id="reloj-valencia">00:00:00</div>
+    </div>
+
+    <div class="reloj-container">
+      <div class="ciudad">México</div>
+      <div class="hora" id="reloj-mexico">00:00:00</div>
+    </div>
+
+    <div class="reloj-container">
+      <div class="ciudad">Colombia</div>
+      <div class="hora" id="reloj-colombia">00:00:00</div>
+    </div>
+  </div>
+
+  <script>
+    function actualizarHora(id, zona) {
+      const ahora = new Date();
+      const opciones = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: zona,
+        hour12: false
+      };
+      const horaFormateada = ahora.toLocaleTimeString('es-ES', opciones);
+      document.getElementById(id).textContent = horaFormateada;
+    }
+
+    function actualizarTodos() {
+      actualizarHora('reloj-valencia', 'Europe/Madrid');
+      actualizarHora('reloj-mexico', 'America/Mexico_City');
+      actualizarHora('reloj-colombia', 'America/Bogota');
+    }
+
+    setInterval(actualizarTodos, 1000);
+    actualizarTodos(); // Mostrar de inmediato
+  </script>
+</body>
+</html>
