@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Relojes Digitales Horizontales</title>
+  <title>Relojes 3x2</title>
   <style>
     body {
       margin: 0;
@@ -15,34 +15,43 @@
       height: 100vh;
     }
 
-    .relojes {
-      display: flex;
-      gap: 40px;
+    .grid-relojes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
     }
 
     .reloj-container {
       text-align: center;
       border: 3px solid #00ff00;
-      padding: 20px 40px;
+      padding: 20px;
       border-radius: 20px;
       box-shadow: 0 0 20px #00ff00;
     }
 
     .ciudad {
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     .hora {
-      font-size: 48px;
+      font-size: 40px;
       letter-spacing: 4px;
       text-shadow: 0 0 10px #00ff00;
+    }
+
+    @media screen and (max-width: 768px) {
+      .grid-relojes {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="relojes">
+  <div class="grid-relojes">
     <div class="reloj-container">
       <div class="ciudad">Valencia, España</div>
       <div class="hora" id="reloj-valencia">00:00:00</div>
@@ -56,6 +65,21 @@
     <div class="reloj-container">
       <div class="ciudad">Colombia</div>
       <div class="hora" id="reloj-colombia">00:00:00</div>
+    </div>
+
+    <div class="reloj-container">
+      <div class="ciudad">Nueva York</div>
+      <div class="hora" id="reloj-ny">00:00:00</div>
+    </div>
+
+    <div class="reloj-container">
+      <div class="ciudad">Tokio</div>
+      <div class="hora" id="reloj-tokio">00:00:00</div>
+    </div>
+
+    <div class="reloj-container">
+      <div class="ciudad">Sídney</div>
+      <div class="hora" id="reloj-sidney">00:00:00</div>
     </div>
   </div>
 
@@ -77,10 +101,13 @@
       actualizarHora('reloj-valencia', 'Europe/Madrid');
       actualizarHora('reloj-mexico', 'America/Mexico_City');
       actualizarHora('reloj-colombia', 'America/Bogota');
+      actualizarHora('reloj-ny', 'America/New_York');
+      actualizarHora('reloj-tokio', 'Asia/Tokyo');
+      actualizarHora('reloj-sidney', 'Australia/Sydney');
     }
 
     setInterval(actualizarTodos, 1000);
-    actualizarTodos(); // Mostrar de inmediato
+    actualizarTodos();
   </script>
 </body>
 </html>
